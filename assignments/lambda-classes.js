@@ -117,15 +117,15 @@ class Student extends Person {
   // This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
   // If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 
-  // graduate() {
-  //   while (this.grade < 70 || this.grade > 100) {
-  //     console.log(`Please try again! Your grade is only ${this.grade}.`);
-  //     this.grade = this.grade + Math.floor(Math.random() * 200 - 100);
-  //   }
-  //   if (this.grade >= 70 || this.grade <= 100) {
-  //     console.log(`Congrats ${this.name} you graduated with a score of ${this.grade}!`);
-  //   }
-  // }
+  graduate() {
+    while (this.grade < 70 || this.grade > 100) {
+      console.log(`Please try again! Your grade is only ${this.grade}.`);
+      this.grade = this.grade + Math.floor(Math.random() * 200 - 100);
+    }
+    if (this.grade >= 70 || this.grade <= 100) {
+      console.log(`Congrats ${this.name} you graduated with a score of ${this.grade}!`);
+    }
+  }
 }
 
 class TeamLead extends Instructor { 
@@ -209,5 +209,6 @@ const dustin = new TeamLead ({
   //console.log(catherine.PRAssignment());
   //console.log(pace.demo("React"))
   //console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS.
-  console.log(dustin.adjustGrade(catherine));
-  
+  // console.log(dustin.adjustGrade(catherine));
+  // console.log(catherine.graduate(pace));
+  console.log(kara.graduate(pace));
