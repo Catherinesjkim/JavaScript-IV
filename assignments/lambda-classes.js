@@ -63,24 +63,18 @@ class Instructor extends Person { // instructor-class
     return `${student.name} receives a perfect score on ${subject}.`;
   }
 
-  // Stretch 2 - Now that our students have a grade, build out a method on the Instructor (this will be used by BOTH instructors and PM's) that will randomly add or subtract points to a student's grade. Math.random will help.
-  randomizer(min, max) {
-    return (Math.floor(Math.random() * 10));
+  // Stretch 2 - Now that our students have a grade, build out a method on the Instructor (this will be used by BOTH instructors and TL's) that will randomly add or subtract points to a student's grade. Math.random will help.
+  adjustGrade(student) {
+    // Number between 1 and 10
+    let points = Math.round(Math.random() * 10);
+    if (student.grade >= 100) {
+      student.grade -= points;
+      return `${points} points are subtracted from ${student.name}'s grade. ${student.name}'s current grade is ${this.grade}`;
+    } else {
+        student.grade += points;
+        return `${points} points are added to ${student.name}'s grade. ${student.name}'s current grade is ${student.grade}`;
+    }
   }
-
-  // Stretch 3 - Add a graduate method to a student.
-  // This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
-  // If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
-
-  // graduate() {
-  //   if (this.grade >= 70) {
-  //     return `${this.name} has graduated with a final grade of ${this.grade}!`;
-  //   } else {
-  //     let diff = 70 - this.grade;
-  //     this.grade += diff;
-  //     return `After more grading, ${diff} points were earned and ${this.name} has graduated with a final grade of ${this.grade}!`;
-  //   }
-  // }
 }
 
 // Student
@@ -118,6 +112,20 @@ class Student extends Person {
   sprintChallenge() {
     return `${this.name} has begun sprint challenge on ${this.sprint}`;
   }
+
+  // Stretch 3 - Add a graduate method to a student.
+  // This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+  // If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+
+  // graduate() {
+  //   while (this.grade < 70 || this.grade > 100) {
+  //     console.log(`Please try again! Your grade is only ${this.grade}.`);
+  //     this.grade = this.grade + Math.floor(Math.random() * 200 - 100);
+  //   }
+  //   if (this.grade >= 70 || this.grade <= 100) {
+  //     console.log(`Congrats ${this.name} you graduated with a score of ${this.grade}!`);
+  //   }
+  // }
 }
 
 class TeamLead extends Instructor { 
@@ -200,7 +208,6 @@ const dustin = new TeamLead ({
   //console.log(catherine.sprintChallenge()); // Catherine has begun sprint challenge on JavaScript
   //console.log(catherine.PRAssignment());
   //console.log(pace.demo("React"))
-  //console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS. 
-  console.log(pace.randomizer())
-  console.log(dustin.randomizer())
+  //console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS.
+  console.log(dustin.adjustGrade(catherine));
   
