@@ -46,6 +46,7 @@ class Person { // base-class
 // Instructor has the following methods:
 // demo receives a subject string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 // grade receives a student object and a subject string as arguments and logs out '{student.name} receives a perfect score on {subject}'
+// Stretch - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100. 
 
 class Instructor extends Person { // instructor-class
   constructor(instAttrs) {
@@ -61,6 +62,25 @@ class Instructor extends Person { // instructor-class
   grade(student, subject) { // methods
     return `${student.name} receives a perfect score on ${subject}.`;
   }
+
+  // Stretch 2 - Now that our students have a grade, build out a method on the Instructor (this will be used by BOTH instructors and PM's) that will randomly add or subtract points to a student's grade. Math.random will help.
+  randomizer(min, max) {
+    return (Math.floor(Math.random() * 10));
+  }
+
+  // Stretch 3 - Add a graduate method to a student.
+  // This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+  // If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+
+  // graduate() {
+  //   if (this.grade >= 70) {
+  //     return `${this.name} has graduated with a final grade of ${this.grade}!`;
+  //   } else {
+  //     let diff = 70 - this.grade;
+  //     this.grade += diff;
+  //     return `After more grading, ${diff} points were earned and ${this.name} has graduated with a final grade of ${this.grade}!`;
+  //   }
+  // }
 }
 
 // Student
@@ -81,6 +101,7 @@ class Student extends Person {
     this.sprint = studAttrs.sprint;
     this.previousBackground = studAttrs.previousBackground;
     this.className = studAttrs.className;
+    this.currentSubject = studAttrs.currentSubject;
   }
   // Student has the following methods:
   // listsSubjects a method that logs out all of the student's favoriteSubjects one by one.
@@ -90,18 +111,19 @@ class Student extends Person {
 
   // PRAssignment a method that receives a subject as an argument and logs out that the student.name has submitted a PR for {subject}
   PRAssignment() {
-    return `${this.name} has submitted a PR for ${subject}`;
+    return `${this.name} has submitted a PR for ${this.currentSubject}`;
   }
 
   // sprintChallenge similar to PRAssignment but logs out student.name has begun sprint challenge on {subject}
   sprintChallenge() {
     return `${this.name} has begun sprint challenge on ${this.sprint}`;
   }
-  
+}
+
 class TeamLead extends Instructor { 
   constructor(leadAttrs) {
     super(leadAttrs);
-    this.gradeClassName = leadAttrs.gradeClassName;
+    this.gradClassName = leadAttrs.gradClassName;
     this.favInstructor = leadAttrs.favInstructor;
     this.channel = leadAttrs.channel;
     }
@@ -129,33 +151,56 @@ const catherine = new Student ({
   name: 'Catherine',
   location: 'Mountain View, CA',
   age: 43,
-  gender: "female",
+  gender: 'female',
   favLanguage: 'JavaScript',
   favSubjects: ['Flexbox', 'React', 'Python', 'Data Science'],
   specialty: 'Full Stack',
-  catchPhrase: `You can do it!`,
+  catchPhrase: 'You can do it!',
   sprint: 'JavaScript',
+  currentSubject: 'JavaScript_IV',
   previousBackground: 'Account Specialist',
-  className: 'WEBPT11'
+  className: 'WEBPT11',
+  grade: 70 // Stretch 1
+});
+
+const kara = new Student ({ 
+  name: 'Kara',
+  location: 'Oklahoma',
+  age: 'Unknown',
+  gender: 'female',
+  favLanguage: 'JavaScript',
+  favSubjects: ['CSS', 'Flexbox', 'React', 'Python', 'Data Science'],
+  specialty: 'Full Stack',
+  catchPhrase: 'You all!',
+  sprint: 'JavaScript',
+  currentSubject: 'JavaScript_IV',
+  previousBackground: 'Home Maker',
+  className: 'WEBPT11',
+  grade: 80 // Stretch 1
 });
 
 const dustin = new TeamLead ({ 
   name: 'Dustin',
   location: 'LA, CA',
-  age: 35,
+  age: 'Unknown',
   gender: "male",
   favLanguage: 'JavaScript',
   specialty: 'Front-end',
   catchPhrase: `Reps!`,
   channel: 'WEBPT11_dustin',
+  gradClassName: 'CS1',
+  favInstructor: 'Pace'
 });
 
   //console.log(pace.speak());
-  // console.log(catherine.listSubjects());
-  // console.log(pace.gender); // male
+  //console.log(catherine.listSubjects());
+  //console.log(pace.gender); // male
   //console.log(dustin.debugCode(catherine, "JavaScript"));
   //console.log(dustin.standUp()); // Dustin announces to WEBPT11_dustin, @channel It's stand up time! 
   //console.log(catherine.sprintChallenge()); // Catherine has begun sprint challenge on JavaScript
+  //console.log(catherine.PRAssignment());
   //console.log(pace.demo("React"))
   //console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS. 
-  // console.log(catherine.PRAssignment());
+  console.log(pace.randomizer())
+  console.log(dustin.randomizer())
+  
