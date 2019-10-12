@@ -64,6 +64,8 @@ class Instructor extends Person { // instructor-class
   }
 
   // Stretch 2 - Now that our students have a grade, build out a method on the Instructor (this will be used by BOTH instructors and TL's) that will randomly add or subtract points to a student's grade. Math.random will help.
+
+  // Gets a random grade
   adjustGrade(student) {
     // Number between 1 and 10
     let points = Math.round(Math.random() * 10);
@@ -188,28 +190,28 @@ const kara = new Student ({
   grade: 80 // Stretch 1
 });
 
-const dustin = new TeamLead ({ 
-  name: 'Dustin',
+const leigh = new TeamLead ({ 
+  name: 'Leigh',
   location: 'LA, CA',
   age: 'Unknown',
-  gender: "male",
+  gender: "female",
   favLanguage: 'JavaScript',
   specialty: 'Front-end',
   catchPhrase: `Reps!`,
-  channel: 'WEBPT11_dustin',
+  channel: 'WEBPT11sunday_lmartin',
   gradClassName: 'CS1',
   favInstructor: 'Pace'
 });
 
-  //console.log(pace.speak());
-  //console.log(catherine.listSubjects());
-  //console.log(pace.gender); // male
-  //console.log(dustin.debugCode(catherine, "JavaScript"));
-  //console.log(dustin.standUp()); // Dustin announces to WEBPT11_dustin, @channel It's stand up time! 
-  //console.log(catherine.sprintChallenge()); // Catherine has begun sprint challenge on JavaScript
-  //console.log(catherine.PRAssignment());
-  //console.log(pace.demo("React"))
-  //console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS.
-  // console.log(dustin.adjustGrade(catherine));
-  // console.log(catherine.graduate(pace));
+  console.log(pace.speak());
+  console.log(catherine.listSubjects());
+  console.log(pace.gender); // male
+  console.log(leigh.debugCode(catherine, "JavaScript"));
+  console.log(leigh.standUp()); // Dustin announces to WEBPT11_dustin, @channel It's stand up time! 
+  console.log(catherine.sprintChallenge()); // Catherine has begun sprint challenge on JavaScript
+  console.log(catherine.PRAssignment());
+  console.log(pace.demo("React"))
+  console.log(pace.grade(catherine, "CSS")); // Catherine receives a perfect score on CSS.
+  console.log(leigh.adjustGrade(catherine));
+  console.log(catherine.graduate(pace));
   console.log(kara.graduate(pace));
