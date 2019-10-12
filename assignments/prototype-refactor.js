@@ -49,10 +49,46 @@ class Humanoid extends CharacterStats {
 //Humanoid  Method Here
   greet() {
     return `${this.name} offers a greeting in ${this.language}.`;
-  };
+  }
 }
 
-// Test you work by un-commenting these 3 objects and the list of console logs below:
+// New Constructor
+class Villain extends Humanoid {
+  constructor(villainAttrs) {
+  super(villainAttrs);
+  this.badBreath = villainAttrs.badBreath;
+  this.opponentHealth = villainAttrs.opponentHealth;
+}
+  // Method
+  evilLaugh() {
+    return `The villain ${this.name} lets out an evil laugh and says "You will fail because I have ${this.weapons}!"`;
+  }
+}
+
+// New Constructor
+class Hero extends Humanoid {
+  constructor(heroAttrs) {
+  super(heroAttrs);
+  this.goodLooks = heroAttrs.goodLooks;
+  this.opponentHealth = heroAttrs.opponentHealth;
+}
+  // Methods
+    codeHard() {
+      this.opponentHealth -= 1;
+      return `The hero ${this.name} codes hard.`;
+  }
+    workHard() {
+      this.opponentHealth -= 5;
+      return `The hero ${this.name} works hard.`;
+  }
+
+    victory() {
+      this.opponentHealth -= 10;
+      return `The hero learns to code using her weapons ${this.weapons}... defeats the villain.`;
+  }
+}
+
+// Objects
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -103,13 +139,68 @@ class Humanoid extends CharacterStats {
     language: 'Elvish',
   });
 
-  console.log(mage.createdAt); // Today's date
-  console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-  console.log(swordsman.healthPoints); // 15
-  console.log(mage.name); // Bruce
-  console.log(swordsman.team); // The Round Table
-  console.log(mage.weapons); // Staff of Shamalama
-  console.log(archer.language); // Elvish
-  console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  console.log(mage.takeDamage()); // Bruce took damage.
-  console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  const villain = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 3,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 20,
+    name: 'Brutal',
+    team: 'Hell',
+    weapons: [
+      'fire',
+      'low self-esteem'
+    ],
+    language: 'Devil Tongue',
+    badBreath: 'funky breath',
+    opponentHealth: 10
+  });
+
+  const hero = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 4,
+      width: 3,
+      height: 5,
+    },
+    healthPoints: 20,
+    name: 'Cat',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Giant Sword',
+      ' Shield',
+      ' Dragons',
+      ' grit' 
+    ],
+    language: 'JavaScript',
+    opponentHealth: 10,
+  });
+
+
+  // console.log(mage.createdAt); // Today's date
+  // console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
+  // console.log(swordsman.healthPoints); // 15
+  // console.log(mage.name); // Bruce
+  // console.log(swordsman.team); // The Round Table
+  // console.log(mage.weapons); // Staff of Shamalama
+  // console.log(archer.language); // Elvish
+  // console.log(archer.greet()); // Lilith offers a greeting in Elvish.
+  // console.log(mage.takeDamage()); // Bruce took damage.
+  // console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+
+console.log("A new battle is about to begin!");
+console.log(`The match ${hero.name} vs ${villain.name} has begun.`);
+console.log(`The villain has the following weapons: ${villain.weapons} `);
+console.log(`The hero has the following weapons ${hero.weapons} `);
+console.log(`The villain has the following extra attribute: ${villain.badBreath} `);
+console.log(`The villain speaks the following language: ${villain.language} `);
+console.log(`The hero speaks the following language: ${hero.language} `);
+console.log(villain.evilLaugh());
+console.log(`${hero.name} has been reduced, ${hero.name} now has ${villain.opponentHealth} less health points.`);
+console.log(hero.codeHard());
+console.log(`${villain.name} has been reduced, ${villain.name} now has ${hero.opponentHealth} less health points`);
+console.log(hero.victory());
+console.log(`${villain.name} has been reduced ${hero.opponentHealth} health points, now only has ${hero.opponentHealth} hp.`)
+console.log(`${hero.name} WINS AND GETS A NEW JOB WITH HIGHER PAY!`);
